@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate('/');
+    
+    // Check if email and password match
+    if (email === 'user@gmail.com' && password === 'user') {
+      navigate('/');
+    } else {
+      setError('Invalid email or password');
+    }
   };
 
   return (
@@ -23,7 +32,15 @@ function Login() {
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
                 </div>
-                <input type="email" id="email" name="email" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Enter your email address" />
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" 
+                  placeholder="Enter your email address" 
+                />
               </div>
             </div>
           </div>
@@ -34,12 +51,21 @@ function Login() {
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FontAwesomeIcon icon={faLock} className="text-gray-400" />
                 </div>
-                <input type="password" id="password" name="password" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Enter your password" />
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" 
+                  placeholder="Enter your password" 
+                />
               </div>
             </div>
           </div>
           <button type="submit" className="w-full bg-[#212121] text-cyan-300 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
         </form>
+        {error && <p className="mt-2 text-red-600 text-center">{error}</p>}
         <p className="mt-4 text-center text-gray-600">Don't have an account? <NavLink to="/signup" className="text-indigo-600 hover:text-indigo-800">Sign Up</NavLink></p>
       </div>
     </div>

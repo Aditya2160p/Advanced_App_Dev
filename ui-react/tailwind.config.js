@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Poppins', 'Roboto'], // Set Arial as the primary font family
+      // Add more font families if needed
+    },
   },
   plugins: [],
 }

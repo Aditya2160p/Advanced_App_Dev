@@ -6,7 +6,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   return (
     <>
-    <nav className="w-full bg-white-500 shadow">
+    <nav className="w-full bg-white-500 h-15 shadow-sm shadow-black sticky">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -19,7 +19,7 @@ const Navbar = () => {
                                 {navbar ? (
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="w-6 h-6 text-white"
+                                        className="w-6 h-6 text-red-500"
                                         viewBox="0 0 20 20"
                                         fillOpacity="currentColor"
                                     >
@@ -32,7 +32,7 @@ const Navbar = () => {
                                 ) : (
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="w-6 h-6 text-white"
+                                        className="w-6 h-6 text-red-500"
                                         fillOpacity="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -56,14 +56,14 @@ const Navbar = () => {
                         }`}
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            <li className="text-red-500 hover:text-indigo-200">
+                            <li className="text-black hover:text-red-500">
                                 <NavLink to="/">Home</NavLink>
                             </li>
-                            <li className="text-red-500 hover:text-indigo-200">
-                                <a href="#">Blog</a>
+                            <li className="text-black hover:text-red-500">
+                            <NavLink to="/contact">Contact</NavLink>
                             </li>
-                            <li className="text-red-500 hover:text-indigo-200">
-                                <a href="#">Contact US</a>
+                            <li className="text-black hover:text-red-500">
+                            <NavLink to="/user/dashboard">Profile</NavLink>
                             </li>
                         </ul>
 
