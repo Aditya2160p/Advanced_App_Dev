@@ -2,30 +2,30 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faColumns, faCreditCard, faBook, faCog } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
-const Sidebar = () => {
+const AdminSidebar = () => {
     const navigate = useNavigate()
     const UserLinks = [
         {
             title: 'Dashboard',
-            path: '/user/dashboard',
+            path: '/admin/dashboard',
             icon: faColumns // FontAwesome Dashboard icon
         },
         {
-            title: 'Membership',
-            path: '/user/membership',
+            title: 'Analytics',
+            path: '/admin/analytics',
             icon: faCreditCard // FontAwesome Credit Card icon
         },
         {
-            title: 'Settings',
-            path: '/user/settings',
+            title: 'UserData',
+            path: '/admin/userdata',
             icon: faCog // FontAwesome Cog icon
         },
     ]
     return (
         <>
-            <div className='w-[15vw] h-[1000vh] bg-red-50/20 shadow-md shadow-black flex flex-col'>
+            <div className='w-[15vw] bg-red-50/20 shadow-md shadow-black flex flex-col'>
                 
-                <div className='flex flex-col gap-1'>
+                <div className='h-[90vh] flex flex-col gap-1'>
                     {
                         UserLinks.map((link, index) => (
                             <NavLink key={index} to={link.path} className='p-5 border-b-4 border-black hover:border-red-600 font-bold mt-2'>
@@ -43,4 +43,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar;
+export default AdminSidebar;

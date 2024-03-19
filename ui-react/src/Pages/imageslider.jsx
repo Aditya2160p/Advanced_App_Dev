@@ -12,7 +12,7 @@ const ImageSlider = () => {
   const images = [job1Image, job2Image,job3Image,job4Image,job6Image,job7Image,job8Image,job9Image];
   const sliderRef = useRef(null);
   const imageWidth = 70; // Adjust the width of each image
-  const moveSpeed = 0.5; // Adjust the speed of the animation
+  const moveSpeed = 0.3; // Adjust the speed of the animation
   const moveInterval = 3000; // Adjust the interval (in milliseconds) between each move
 
   useEffect(() => {
@@ -20,14 +20,12 @@ const ImageSlider = () => {
     let position = 0;
     let animationId;
 
-    // Duplicate the first image at the end of the image list
     const duplicatedImages = [...images, images[0]];
 
     const moveSlider = () => {
       position -= moveSpeed;
       slider.style.transform = `translateX(${position}px)`;
 
-      // If the slider reaches the end, reset its position to the beginning
       if (position <= -duplicatedImages.length * imageWidth) {
         position = 0;
         slider.style.transform = `translateX(${position}px)`;

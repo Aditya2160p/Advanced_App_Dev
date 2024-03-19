@@ -9,7 +9,7 @@ const Membership = () => {
         <div className="grid grid-cols-3 gap-10">
         <div className='transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
           <MembershipCard
-            title="Basic"
+            title="Plan A"
             price="$9.99/month"
             icon={<LayoutDashboard />} // Lucid Dashboard icon
             features={[
@@ -22,11 +22,11 @@ const Membership = () => {
           </div>
            <div className='transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
           <MembershipCard
-            title="Amateur"
+            title="Plan B"
             price="$19.99/month"
             icon={<User />} // Lucid User icon
             features={[
-              'All Basic features',
+              'All Plan A features',
               'Feature 4',
               'Feature 5',
               // Add more features as needed
@@ -35,11 +35,11 @@ const Membership = () => {
           </div>
            <div className='transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
           <MembershipCard
-            title="Pro"
+            title="Plan C"
             price="$29.99/month"
             icon={<Box />} // Lucid Box icon
             features={[
-              'All Amateur features',
+              'All Plan B features',
               'Feature 6',
               'Feature 7',
               // Add more features as needed

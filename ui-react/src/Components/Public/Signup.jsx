@@ -1,49 +1,72 @@
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faPhone, faLock } from '@fortawesome/free-solid-svg-icons';
 
-function Signup() {
-  const navigate = useNavigate();
+const Signup = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    password: ''
+  });
 
-  const handleSignup = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSignUpSubmit = (e) => {
     e.preventDefault();
-    navigate('/login');
+    localStorage.setItem('userData', JSON.stringify(formData));
+    console.log('Signed up with:', formData);
+    window.location.href = '/login';
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">Sign Up</h2>
-        <form className="space-y-4" onSubmit={handleSignup}>
-          <div>
-            <label htmlFor="email" className="block text-gray-700">Email Address</label>
-            <div className="mt-1">
-              <div className="relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
-                </div>
-                <input type="email" id="email" name="email" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Enter your email address" />
-              </div>
+    <div className="min-h-screen flex container mx-auto py-20 px-4 items-center justify-center bg-white">
+      <div className="flex justify-center items-center h-full mb-20">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+          <form onSubmit={handleSignUpSubmit}>
+            <h2 className="text-3xl font-semibold mb-4 text-center">Sign Up</h2>
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-gray-700">
+                <FontAwesomeIcon icon={faUser} className="mr-2" />
+                Name
+              </label>
+              <input type="text" id="name" name="name" className="border border-gray-400 rounded-md py-2 px-3 w-full focus:outline-none focus:border-purple-500" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
             </div>
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-gray-700">Password</label>
-            <div className="mt-1">
-              <div className="relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FontAwesomeIcon icon={faLock} className="text-gray-400" />
-                </div>
-                <input type="password" id="password" name="password" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Enter your password" />
-              </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-gray-700">
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+                Email
+              </label>
+              <input type="email" id="email" name="email" className="border border-gray-400 rounded-md py-2 px-3 w-full focus:outline-none focus:border-purple-500" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
             </div>
-          </div>
-          <button type="submit" className="w-full bg-[#212121] text-cyan-300  py-2 rounded-md hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign Up</button>
-        </form>
-        <p className="mt-4 text-center text-gray-600">Already have an account? <NavLink to="/login" className="text-indigo-600 hover:text-indigo-800">Log In</NavLink></p>
+            <div className="mb-4">
+              <label htmlFor="phoneNumber" className="block text-gray-700">
+                <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                Phone Number
+              </label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" className="border border-gray-400 rounded-md py-2 px-3 w-full focus:outline-none focus:border-purple-500" placeholder="Enter your phone number" value={formData.phoneNumber} onChange={handleChange} required />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-gray-700">
+                <FontAwesomeIcon icon={faLock} className="mr-2" />
+                Password
+              </label>
+              <input type="password" id="password" name="password" className="border border-gray-400 rounded-md py-2 px-3 w-full focus:outline-none focus:border-purple-500" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
+            </div>
+            <button type="submit" className="w-full bg-[#212121] text-white  py-2 rounded-md  hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign Up</button>
+          </form>
+          <p className="mt-4 text-center text-gray-600">Already have an account? <NavLink to="/login" className="hover:underline text-red-500 ">Log In</NavLink></p>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Signup;
