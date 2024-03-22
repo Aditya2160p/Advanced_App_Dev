@@ -12,7 +12,7 @@ const ImageSlider = () => {
   const images = [job1Image, job2Image,job3Image,job4Image,job6Image,job7Image,job8Image,job9Image];
   const sliderRef = useRef(null);
   const imageWidth = 70; // Adjust the width of each image
-  const moveSpeed = 0.3; // Adjust the speed of the animation
+  const moveSpeed = 0.4; // Adjust the speed of the animation
   const moveInterval = 3000; // Adjust the interval (in milliseconds) between each move
 
   useEffect(() => {

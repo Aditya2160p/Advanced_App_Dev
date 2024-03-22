@@ -28,7 +28,7 @@ const Sidebar = () => {
                 <div className='flex flex-col gap-1'>
                     {
                         UserLinks.map((link, index) => (
-                            <NavLink key={index} to={link.path} className='p-5 border-b-4 border-black hover:border-red-600 font-bold mt-2'>
+                            <NavLink key={index} to={link.path} className='p-5 border-b-4 border-red-500 hover:border-black font-bold mt-2'>
                                 <span className='flex flex-row items-center justify-start h-full w-full gap-2'>
                                     <FontAwesomeIcon icon={link.icon} size="lg" /> {/* Use FontAwesome icon component */}
                                     {link.title}

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JobpilotApplication<jobpilot>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.job.jobpilot.JobpilotApplication",
+            "projectName": "jobpilot",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
