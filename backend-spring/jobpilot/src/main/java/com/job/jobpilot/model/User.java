@@ -1,5 +1,6 @@
 package com.job.jobpilot.model;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -19,12 +20,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "jb_user")
+@Table(name = "ft_user")
 public class User implements UserDetails {
 
     @Id
@@ -33,8 +36,6 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-    private String phone;
-    private String address;
 
     @Enumerated(EnumType.STRING)
     private Role role;

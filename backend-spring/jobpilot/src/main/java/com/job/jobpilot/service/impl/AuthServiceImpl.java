@@ -43,8 +43,6 @@ public class AuthServiceImpl implements AuthService {
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .phone(registerRequest.getPhone())
-                .address(registerRequest.getAddress())
                 .role(Role.User)
                 .build();
         userRepository.save(user);
@@ -61,9 +59,9 @@ public class AuthServiceImpl implements AuthService {
         var accessToken = jwtUtil.generateToken(extraClaims, user);
         revokeAllUserTokens(user);
         saveUserToken(user, accessToken);
-        return LoginResponse.builder().accessToken(accessToken).build();
+        return LoginResponse.builder().accessToken(accessToken).userName(user.getName()).build();
     }
-
+    
     private void saveUserToken(User user, String accessToken) {
         var token = Token.builder().user(user).token(accessToken).expired(false).revoked(false).build();
         tokenRepository.save(token);
