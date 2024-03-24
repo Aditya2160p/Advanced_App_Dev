@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ft_token")
+@Table(name = "jobpilot_token")
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
