@@ -1,5 +1,7 @@
 package com.job.jobpilot.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.job.jobpilot.dto.request.UserRequest;
@@ -37,4 +39,8 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(long userUid) {
        userRepo.deleteById(userUid);
     }
+    // @Override
+    // public List<User> getAllUser() {
+    //     return userRepo.findAll();
+    // }
 }
