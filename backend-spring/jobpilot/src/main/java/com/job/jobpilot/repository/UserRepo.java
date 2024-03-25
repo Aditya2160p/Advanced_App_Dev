@@ -8,4 +8,6 @@ import com.job.jobpilot.model.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
+    Boolean existsByName(String name);
+    Boolean existsByEmail(String email);
 }
