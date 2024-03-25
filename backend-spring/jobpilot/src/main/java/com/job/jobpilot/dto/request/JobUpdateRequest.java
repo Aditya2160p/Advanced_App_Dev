@@ -1,7 +1,7 @@
 package com.job.jobpilot.dto.request;
 
-public class JobRequest {
-
+public class JobUpdateRequest {
+    
     private String jobName;
     private String descrption;
     private double salary;
@@ -23,6 +23,6 @@ public class JobRequest {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-
     
+   
 }

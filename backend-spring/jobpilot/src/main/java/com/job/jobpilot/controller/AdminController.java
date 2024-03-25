@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// import com.job.jobpilot.dto.request.JobRequest;
 import com.job.jobpilot.dto.request.RegisterRequest;
 import com.job.jobpilot.dto.request.UserUpdateRequest;
 import com.job.jobpilot.dto.response.MessageResponse;
@@ -23,6 +24,7 @@ import com.job.jobpilot.model.User;
 // import com.job.jobpilot.dto.request.JobRequest;
 // import com.job.jobpilot.model.Job;
 // import com.job.jobpilot.repository.JobRepo;
+// import com.job.jobpilot.service.JobService;
 import com.job.jobpilot.repository.UserRepo;
 import com.job.jobpilot.service.UserService;
 
@@ -42,6 +44,7 @@ public class AdminController {
     private final UserService userService;
     private final UserRepo userRepository;
 	// private final JobRepo jobRepo;
+	// private final JobService jobService;
     @Autowired
     private final PasswordEncoder encoder;
 
@@ -75,12 +78,13 @@ public class AdminController {
 	//       return ResponseEntity.badRequest().body(new MessageResponse("Error: Job already exists!"));
 	//     }
 
-	//     Job job= new Job(jobRequest.getJobname(),
-	//                          jobRequest.getDescription(),
-	//                          jobRequest.getSalary());
+	//     Job job= new Job();
+	// 	 job.setJobname(jobRequest.getJobname());
+	//      job.setDescription(jobRequest.getDescription());
+	//       job.setSalary(jobRequest.getSalary());
 
-    //     userRepository.save(job);
-    //     return ResponseEntity.ok(new MessageResponse("User created successfully!"));
+    //     jobRepo.save(job);
+    //     return ResponseEntity.ok(new MessageResponse("Job added successfully!"));
     // }
 
 
@@ -107,4 +111,11 @@ public class AdminController {
 	    userService.deleteUser(userId);
 	    return ResponseEntity.ok(new MessageResponse("User deleted successfully."));
 	}
+
+    // @DeleteMapping("/admin/{jobid}")
+	// @PreAuthorize("hasRole('Admin')")
+	// public ResponseEntity<?> deleteJob(@PathVariable Long jobid) {
+	//     jobService.deleteJob(jobid);
+	//     return ResponseEntity.ok(new MessageResponse("Job deleted successfully."));
+	// }
 }

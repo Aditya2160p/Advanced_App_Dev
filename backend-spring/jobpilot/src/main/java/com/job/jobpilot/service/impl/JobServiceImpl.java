@@ -1,30 +1,41 @@
-// package com.job.jobpilot.service.impl;
+package com.job.jobpilot.service.impl;
 
-// import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
-// import com.job.jobpilot.dto.request.JobRequest;
-// import com.job.jobpilot.model.Job;
-// import com.job.jobpilot.repository.JobRepo;
-// import com.job.jobpilot.service.JobService;
+import com.job.jobpilot.dto.request.JobRequest;
+import com.job.jobpilot.dto.request.JobUpdateRequest;
+import com.job.jobpilot.model.Job;
+import com.job.jobpilot.repository.JobRepo;
+import com.job.jobpilot.service.JobService;
 
-// import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-// @Service
-// @RequiredArgsConstructor
-// @SuppressWarnings("null")
-// public class JobServiceImpl implements JobService{
-//     private final JobRepo jobRepo;
+@Service
+@RequiredArgsConstructor
+public class JobServiceImpl implements JobService {
+    private final JobRepo jobRepo;
 
-//     @Override
-//     public void createJob(JobRequest jobRequest){
-//         Job job=new Job();
-//         job.setJobname(jobRequest.getJobname());
-//         job.setDescription(jobRequest.getDescription());
-//         job.setSalary(jobRequest.getSalary());
-//         jobRepo.save(job);
-//     }
-//     @Override
-//     public void deleteJob(long jobid){
-//         jobRepo.deleteById(jobid);
-//     }
-// }
+    @Override
+    public void createJob(JobRequest jobRequest)
+    {
+    Job job =new Job();
+    job.setJobName(jobRequest.getJobName());
+    job.setDescrption(jobRequest.getDescrption());
+    job.setSalary(jobRequest.getSalary());
+    jobRepo.save(job);     
+    }
+
+    @Override
+    public void updateJob(long jid,JobUpdateRequest jobUpdateRequest){
+        Job existingjob=jobRepo.findById(jid)
+        .orElseThrow(() -> new RuntimeException("job Not Found"));
+        existingjob.setJobName(jobUpdateRequest.getJobName());
+        existingjob.setDescrption(jobUpdateRequest.getDescrption());
+        existingjob.setSalary(jobUpdateRequest.getSalary());
+    }
+
+    @Override
+    public void deleteJob(long jid) {
+       jobRepo.deleteById(jid);
+    }
+}
