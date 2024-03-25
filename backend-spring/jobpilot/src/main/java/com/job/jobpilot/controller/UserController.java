@@ -1,10 +1,13 @@
 package com.job.jobpilot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.job.jobpilot.dto.request.UserUpdateRequest;
 import com.job.jobpilot.dto.response.MessageResponse;
+import com.job.jobpilot.model.Job;
 import com.job.jobpilot.model.User;
 import com.job.jobpilot.repository.UserRepo;
+import com.job.jobpilot.service.JobService;
 
 // import io.swagger.v3.oas.annotations.Operation;
 // import io.swagger.v3.oas.annotations.Parameter;
@@ -28,6 +33,8 @@ public class UserController {
     private final UserRepo userRepository;
     @Autowired
     private final PasswordEncoder encoder;
+    @Autowired
+    private final JobService jobService;
 
     @PutMapping("/users/{userId}")
     @PreAuthorize("hasRole('User')")
@@ -52,5 +59,10 @@ public class UserController {
         userRepository.save(existingUser);
 
         return ResponseEntity.ok(new MessageResponse("User updated successfully."));
+    }
+    @GetMapping("/alljobs")
+    @PreAuthorize("hasRole('User')")
+    public List<Job> getAllJob() {
+        return jobService.getAllJob();
     }
 }

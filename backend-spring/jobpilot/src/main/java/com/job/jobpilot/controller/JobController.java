@@ -3,6 +3,7 @@ package com.job.jobpilot.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,7 +43,7 @@ public class JobController {
         Job.setDescrption(jobRequest.getDescrption());
 		Job.setSalary(jobRequest.getSalary());
         jobRepository.save(Job);
-        return ResponseEntity.ok(new MessageResponse("Job successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Job added successfully!"));
     }
 
     @PutMapping("/Jobs/{JobId}")

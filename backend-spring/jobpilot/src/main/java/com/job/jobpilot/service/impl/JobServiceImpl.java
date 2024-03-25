@@ -1,5 +1,7 @@
 package com.job.jobpilot.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.job.jobpilot.dto.request.JobRequest;
@@ -37,5 +39,9 @@ public class JobServiceImpl implements JobService {
     @Override
     public void deleteJob(long jid) {
        jobRepo.deleteById(jid);
+    }
+    @Override
+    public List<Job> getAllJob() {
+        return jobRepo.findAll();
     }
 }
