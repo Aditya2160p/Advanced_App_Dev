@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.job.jobpilot.dto.request.RegisterRequest;
 import com.job.jobpilot.dto.request.UserUpdateRequest;
 import com.job.jobpilot.dto.response.MessageResponse;
+import com.job.jobpilot.enums.Role;
 import com.job.jobpilot.model.User;
 // import com.job.jobpilot.dto.request.JobRequest;
 // import com.job.jobpilot.model.Job;
@@ -60,6 +61,7 @@ public class AdminController {
         user.setName(registerRequest.getName());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(encoder.encode(registerRequest.getPassword()));
+		user.setRole(Role.User);
         // Save the user entity to the database
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User created successfully!"));
